@@ -44,7 +44,7 @@ export const registerEvent = async(req, res, next) => {
         //if event is full
         const registrationCount = await pool.query("SELECT COUNT(*) FROM registrations WHERE event_id = $1", [eventId]);
         const totalRegistered = parseInt(registrationCount.rows[0].count);
-        if(totalRegistered === capacity){
+        if(totalRegistered === event.capacity){
             return handleResponse(res, 400, "Event is full")
         }
 
